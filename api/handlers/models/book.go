@@ -5,15 +5,16 @@ type Book struct {
 	Name      string `json:"name"`
 	AuthorId  string `json:"authorId"`
 	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAd"`
+	UpdatedAt string `json:"updatedAt"`
 }
 
 type UpdateBook struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	AuthorId  string `json:"authorId"`
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	AuthorId string `json:"authorId"`
 }
 
 type ListBooks struct {
 	Books []Book `json:"books"`
+	Count int64  `json:"count"`
 }

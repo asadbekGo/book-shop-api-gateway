@@ -1,5 +1,5 @@
 CURRENT_DIR=$(shell pwd)
-APP=template
+APP=api-gateway
 APP_CMD_DIR=./cmd
 
 build:

@@ -14,4 +14,5 @@ type UpdateAuthor struct {
 
 type ListAuthors struct {
 	Authors []Author `json:"authors"`
+	Count   int64    `json:"count"`
 }

@@ -32,7 +32,7 @@ func (h *handlerV1) CreateOrder(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.OrderService().Create(ctx, &body)
+	response, err := h.serviceManager.OrderService().CreateOrder(ctx, &body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -52,7 +52,7 @@ func (h *handlerV1) GetOrder(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.OrderService().Get(
+	response, err := h.serviceManager.OrderService().GetOrder(
 		ctx, &pb.ByIdReq{
 			Id: guid,
 		})
@@ -85,7 +85,7 @@ func (h *handlerV1) ListOrders(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.OrderService().List(
+	response, err := h.serviceManager.OrderService().ListOrders(
 		ctx, &pb.ListReq{
 			Limit: params.Limit,
 			Page:  params.Page,
@@ -121,7 +121,7 @@ func (h *handlerV1) UpdateOrder(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.OrderService().Update(ctx, &body)
+	response, err := h.serviceManager.OrderService().UpdateOrder(ctx, &body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -141,7 +141,7 @@ func (h *handlerV1) DeleteOrder(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	response, err := h.serviceManager.OrderService().Delete(
+	response, err := h.serviceManager.OrderService().DeleteOrder(
 		ctx, &pb.ByIdReq{
 			Id: guid,
 		})
