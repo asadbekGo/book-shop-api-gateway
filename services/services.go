@@ -8,19 +8,22 @@ import (
 	"google.golang.org/grpc/resolver"
 
 	"github.com/asadbekGo/book-shop-api-gateway/config"
-	pb "github.com/asadbekGo/book-shop-api-gateway/genproto/order_service"
+	pbCatalog "github.com/asadbekGo/book-shop-api-gateway/genproto/catalog_service"
+	pbOrder "github.com/asadbekGo/book-shop-api-gateway/genproto/order_service"
 )
 
 type IServiceManager interface {
-	OrderService() pb.OrderServiceClient
+	OrderService() pbOrder.OrderServiceClient
+	CatalogService() pbCatalog.CatalogServiceClient
 }
 
 type serviceManager struct {
-	orderService pb.OrderServiceClient
+	orderService   pbOrder.OrderServiceClient
+	catalogService pbCatalog.CatalogServiceClient
 }
 
-func (s *serviceManager) OrderService() pb.OrderServiceClient {
-	return s.orderService
+func (s *serviceManager) Services() (pbOrder.OrderServiceClient, pbCatalog.CatalogServiceClient) {
+	return s.orderService, s.catalogService
 }
 
 func NewServiceManager(conf *config.Config) (IServiceManager, error) {
@@ -33,8 +36,16 @@ func NewServiceManager(conf *config.Config) (IServiceManager, error) {
 		return nil, err
 	}
 
+	connCatalog, err := grpc.Dial(
+		fmt.Sprintf("%s:%d", conf.CatalogServiceHost, conf.CatalogServicePort),
+		grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return nil, err
+	}
+
 	serviceManager := &serviceManager{
-		orderService: pb.NewOrderServiceClient(connOrder),
+		orderService:   pbOrder.NewOrderServiceClient(connOrder),
+		catalogService: pbCatalog.NewCatalogServiceClient(connCatalog),
 	}
 
 	return serviceManager, nil

@@ -32,12 +32,12 @@ func New(option Option) *gin.Engine {
 		Cfg:            option.Conf,
 	})
 
-	api := router.Group("/os_v1")
-	api.POST("/orders", handlerV1.CreateOrder)
+	api := router.Group("/v1")
+	api.POST("/order", handlerV1.CreateOrder)
 	api.GET("/orders/:id", handlerV1.GetOrder)
 	api.GET("/orders", handlerV1.ListOrders)
-	api.PUT("/orders/:id", handlerV1.UpdateOrder)
-	api.DELETE("/orders/:id", handlerV1.DeleteOrder)
+	api.PUT("/order/:id", handlerV1.UpdateOrder)
+	api.DELETE("/order/:id", handlerV1.DeleteOrder)
 
 	// url := ginSwagger.URL("swagger/doc.json") // The url pointing to API definition
 	// router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
