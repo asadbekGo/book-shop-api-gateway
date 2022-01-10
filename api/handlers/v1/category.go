@@ -23,7 +23,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param Category request body models.Category true "categoryCreateRequest"
-// @Success 200 {object} models.Category
+// @Success 200 {object} models.CategoryResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) CreateCategory(c *gin.Context) {
@@ -64,7 +64,7 @@ func (h *handlerV1) CreateCategory(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200 {object} models.Category
+// @Success 200 {object} models.CategoryResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) GetCategory(c *gin.Context) {
@@ -146,7 +146,7 @@ func (h *handlerV1) GetCategories(c *gin.Context) {
 // @Produce  json
 // @Param id path string true "ID"
 // @Param Category request body models.UpdateCategory true "categoryUpdateRequest"
-// @Success 200
+// @Success 200 {object} models.CategoryResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) UpdateCategory(c *gin.Context) {
@@ -189,7 +189,7 @@ func (h *handlerV1) UpdateCategory(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200
+// @Success 200 {object} models.Empty
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) DeleteCategory(c *gin.Context) {

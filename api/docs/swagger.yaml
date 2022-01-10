@@ -1,20 +1,23 @@
 definitions:
   models.Author:
     properties:
-      created_at:
+      name:
         type: string
-      id:
+    type: object
+  models.AuthorResp:
+    properties:
+      authorId:
+        type: string
+      createdAt:
         type: string
       name:
         type: string
-      updated_at:
+      updatedAt:
         type: string
     type: object
   models.Book:
     properties:
-      author_id:
-        type: string
-      id:
+      authorId:
         type: string
       name:
         type: string
@@ -47,7 +50,7 @@ definitions:
   models.BookResp:
     properties:
       author:
-        type: string
+        $ref: '#/definitions/models.AuthorResp'
       created_at:
         type: string
       id:
@@ -59,6 +62,13 @@ definitions:
     type: object
   models.Category:
     properties:
+      name:
+        type: string
+      parrentUUID:
+        type: string
+    type: object
+  models.CategoryResp:
+    properties:
       created_at:
         type: string
       id:
@@ -69,6 +79,8 @@ definitions:
         type: string
       updated_at:
         type: string
+    type: object
+  models.Empty:
     type: object
   models.Error:
     properties:
@@ -79,7 +91,7 @@ definitions:
     properties:
       authors:
         items:
-          $ref: '#/definitions/models.Author'
+          $ref: '#/definitions/models.AuthorResp'
         type: array
       count:
         type: integer
@@ -88,7 +100,7 @@ definitions:
     properties:
       books:
         items:
-          $ref: '#/definitions/models.Book'
+          $ref: '#/definitions/models.BookResp'
         type: array
       count:
         type: integer
@@ -97,7 +109,7 @@ definitions:
     properties:
       categories:
         items:
-          $ref: '#/definitions/models.Category'
+          $ref: '#/definitions/models.CategoryResp'
         type: array
       count:
         type: integer
@@ -108,18 +120,25 @@ definitions:
         type: integer
       orders:
         items:
-          $ref: '#/definitions/models.Order'
+          $ref: '#/definitions/models.OrderResp'
         type: array
     type: object
   models.Order:
     properties:
-      book_id:
-        type: string
-      created_at:
+      bookId:
         type: string
       description:
         type: string
-      updated_at:
+    type: object
+  models.OrderResp:
+    properties:
+      bookId:
+        type: string
+      createdAt:
+        type: string
+      description:
+        type: string
+      updatedAt:
         type: string
     type: object
   models.StandardErrorModel:
@@ -129,8 +148,6 @@ definitions:
     type: object
   models.UpdateAuthor:
     properties:
-      id:
-        type: string
       name:
         type: string
     type: object
@@ -138,15 +155,11 @@ definitions:
     properties:
       author_id:
         type: string
-      id:
-        type: string
       name:
         type: string
     type: object
   models.UpdateCategory:
     properties:
-      id:
-        type: string
       name:
         type: string
       parrentUUID:
@@ -154,11 +167,9 @@ definitions:
     type: object
   models.UpdateOrder:
     properties:
-      book_id:
+      bookId:
         type: string
       description:
-        type: string
-      id:
         type: string
     type: object
 info:
@@ -182,7 +193,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Author'
+            $ref: '#/definitions/models.AuthorResp'
         "400":
           description: Bad Request
           schema:
@@ -209,7 +220,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Empty'
         "400":
           description: Bad Request
           schema:
@@ -241,7 +254,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.AuthorResp'
         "400":
           description: Bad Request
           schema:
@@ -302,7 +317,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Author'
+            $ref: '#/definitions/models.AuthorResp'
         "400":
           description: Bad Request
           schema:
@@ -332,7 +347,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Book'
+            $ref: '#/definitions/models.BookResp'
         "400":
           description: Bad Request
           schema:
@@ -359,7 +374,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Empty'
         "400":
           description: Bad Request
           schema:
@@ -391,7 +408,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BookResp'
         "400":
           description: Bad Request
           schema:
@@ -453,7 +472,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.BookCategory'
+            $ref: '#/definitions/models.BookCategoryResp'
         "400":
           description: Bad Request
           schema:
@@ -480,7 +499,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Empty'
         "400":
           description: Bad Request
           schema:
@@ -508,7 +529,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.BookCategory'
+            $ref: '#/definitions/models.BookCategoryResp'
         "400":
           description: Bad Request
           schema:
@@ -577,7 +598,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Book'
+            $ref: '#/definitions/models.BookResp'
         "400":
           description: Bad Request
           schema:
@@ -638,7 +659,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Category'
+            $ref: '#/definitions/models.CategoryResp'
         "400":
           description: Bad Request
           schema:
@@ -668,7 +689,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Category'
+            $ref: '#/definitions/models.CategoryResp'
         "400":
           description: Bad Request
           schema:
@@ -695,7 +716,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Empty'
         "400":
           description: Bad Request
           schema:
@@ -727,7 +750,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CategoryResp'
         "400":
           description: Bad Request
           schema:
@@ -757,7 +782,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Order'
+            $ref: '#/definitions/models.OrderResp'
         "400":
           description: Bad Request
           schema:
@@ -784,7 +809,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Empty'
         "400":
           description: Bad Request
           schema:
@@ -816,7 +843,9 @@ paths:
       - application/json
       responses:
         "200":
-          description: ""
+          description: OK
+          schema:
+            $ref: '#/definitions/models.OrderResp'
         "400":
           description: Bad Request
           schema:
@@ -877,7 +906,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Order'
+            $ref: '#/definitions/models.OrderResp'
         "400":
           description: Bad Request
           schema:

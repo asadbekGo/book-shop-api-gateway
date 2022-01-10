@@ -1,6 +1,11 @@
 package models
 
 type Category struct {
+	Name       string `json:"name"`
+	ParentUUID string `json:"parrentUUID"`
+}
+
+type CategoryResp struct {
 	ID         string `json:"id"`
 	Name       string `json:"name"`
 	ParentUUID string `json:"parrentUUID"`
@@ -9,12 +14,11 @@ type Category struct {
 }
 
 type UpdateCategory struct {
-	ID         string `json:"id"`
 	Name       string `json:"name"`
 	ParentUUID string `json:"parrentUUID"`
 }
 
 type ListCategories struct {
-	Categories []Category `json:"categories"`
-	Count      int64      `json:"count"`
+	Categories []CategoryResp `json:"categories"`
+	Count      int64          `json:"count"`
 }

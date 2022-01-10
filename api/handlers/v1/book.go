@@ -22,7 +22,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param Book request body models.Book true "bookCreateRequest"
-// @Success 200 {object} models.Book
+// @Success 200 {object} models.BookResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) CreateBook(c *gin.Context) {
@@ -63,7 +63,7 @@ func (h *handlerV1) CreateBook(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200 {object} models.Book
+// @Success 200 {object} models.BookResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) GetBook(c *gin.Context) {
@@ -147,7 +147,7 @@ func (h *handlerV1) GetBooks(c *gin.Context) {
 // @Produce  json
 // @Param id path string true "ID"
 // @Param Book request body models.UpdateBook true "bookUpdateRequest"
-// @Success 200
+// @Success 200 {object} models.BookResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) UpdateBook(c *gin.Context) {
@@ -190,7 +190,7 @@ func (h *handlerV1) UpdateBook(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200
+// @Success 200 {object} models.Empty
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) DeleteBook(c *gin.Context) {
