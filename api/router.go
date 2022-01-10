@@ -46,7 +46,7 @@ func New(option Option) *gin.Engine {
 	api.DELETE("/category/:id", handlerV1.DeleteCategory)
 
 	api.POST("/book", handlerV1.CreateBook)
-	api.GET("/book/:id", handlerV1.GetBook)
+	api.GET("/books/:id", handlerV1.GetBook)
 	api.GET("/books", handlerV1.GetBooks)
 	api.PUT("/book/:id", handlerV1.UpdateBook)
 	api.DELETE("/book/:id", handlerV1.DeleteBook)

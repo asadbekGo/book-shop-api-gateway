@@ -23,7 +23,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param BookCategory request body models.BookCategory true "bookCategoryCreateRequest"
-// @Success 200 {object} models.BookCategory
+// @Success 200 {object} models.BookCategoryResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) CreateBookCategory(c *gin.Context) {
@@ -64,7 +64,7 @@ func (h *handlerV1) CreateBookCategory(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200 {object} models.BookCategory
+// @Success 200 {object} models.BookCategoryResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) GetBookCategory(c *gin.Context) {
@@ -144,7 +144,7 @@ func (h *handlerV1) GetBookCategories(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200
+// @Success 200 {object} models.Empty
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) DeleteBookCategory(c *gin.Context) {

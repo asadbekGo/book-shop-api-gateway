@@ -1,19 +1,23 @@
 package models
 
 type Order struct {
-	BookId      string `json:"book_id"`
+	BookId      string `json:"bookId"`
 	Description string `json:"description"`
-	CreatedAt   string `json:"created_at"`
-	UpdatedAt   string `json:"updated_at"`
+}
+
+type OrderResp struct {
+	BookId      string `json:"bookId"`
+	Description string `json:"description"`
+	CreatedAt   string `json:"createdAt"`
+	UpdatedAt   string `json:"updatedAt"`
 }
 
 type UpdateOrder struct {
-	ID          string `json:"id"`
-	BookId      string `json:"book_id"`
+	BookId      string `json:"bookId"`
 	Description string `json:"description"`
 }
 
 type ListOrders struct {
-	Orders []Order `json:"orders"`
-	Count  int64   `json:"count"`
+	Orders []OrderResp `json:"orders"`
+	Count  int64       `json:"count"`
 }

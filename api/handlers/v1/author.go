@@ -23,7 +23,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param Author request body models.Author true "authorCreateRequest"
-// @Success 200 {object} models.Author
+// @Success 200 {object} models.AuthorResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) CreateAuthor(c *gin.Context) {
@@ -64,7 +64,7 @@ func (h *handlerV1) CreateAuthor(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200 {object} models.Author
+// @Success 200 {object} models.AuthorResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) GetAuthor(c *gin.Context) {
@@ -147,7 +147,7 @@ func (h *handlerV1) GetAuthors(c *gin.Context) {
 // @Produce  json
 // @Param id path string true "ID"
 // @Param Author request body models.UpdateAuthor true "authorUpdateRequest"
-// @Success 200
+// @Success 200 {object} models.AuthorResp
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) UpdateAuthor(c *gin.Context) {
@@ -190,7 +190,7 @@ func (h *handlerV1) UpdateAuthor(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "ID"
-// @Success 200
+// @Success 200 {object} models.Empty
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) DeleteAuthor(c *gin.Context) {

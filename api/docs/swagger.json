@@ -32,7 +32,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Author"
+                            "$ref": "#/definitions/models.AuthorResp"
                         }
                     },
                     "400": {
@@ -83,7 +83,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.AuthorResp"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -122,7 +125,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Empty"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -214,7 +220,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Author"
+                            "$ref": "#/definitions/models.AuthorResp"
                         }
                     },
                     "400": {
@@ -260,7 +266,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Book"
+                            "$ref": "#/definitions/models.BookResp"
                         }
                     },
                     "400": {
@@ -311,7 +317,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.BookResp"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -350,7 +359,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Empty"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -444,7 +456,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.BookCategory"
+                            "$ref": "#/definitions/models.BookCategoryResp"
                         }
                     },
                     "400": {
@@ -488,7 +500,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.BookCategory"
+                            "$ref": "#/definitions/models.BookCategoryResp"
                         }
                     },
                     "400": {
@@ -528,7 +540,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Empty"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -632,7 +647,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Book"
+                            "$ref": "#/definitions/models.BookResp"
                         }
                     },
                     "400": {
@@ -725,7 +740,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Category"
+                            "$ref": "#/definitions/models.CategoryResp"
                         }
                     },
                     "400": {
@@ -771,7 +786,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Category"
+                            "$ref": "#/definitions/models.CategoryResp"
                         }
                     },
                     "400": {
@@ -822,7 +837,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoryResp"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -861,7 +879,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Empty"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -906,7 +927,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Order"
+                            "$ref": "#/definitions/models.OrderResp"
                         }
                     },
                     "400": {
@@ -957,7 +978,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.OrderResp"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -996,7 +1020,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Empty"
+                        }
                     },
                     "400": {
                         "description": "Bad Request",
@@ -1088,7 +1115,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Order"
+                            "$ref": "#/definitions/models.OrderResp"
                         }
                     },
                     "400": {
@@ -1111,16 +1138,24 @@
         "models.Author": {
             "type": "object",
             "properties": {
-                "created_at": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.AuthorResp": {
+            "type": "object",
+            "properties": {
+                "authorId": {
                     "type": "string"
                 },
-                "id": {
+                "createdAt": {
                     "type": "string"
                 },
                 "name": {
                     "type": "string"
                 },
-                "updated_at": {
+                "updatedAt": {
                     "type": "string"
                 }
             }
@@ -1128,10 +1163,7 @@
         "models.Book": {
             "type": "object",
             "properties": {
-                "author_id": {
-                    "type": "string"
-                },
-                "id": {
+                "authorId": {
                     "type": "string"
                 },
                 "name": {
@@ -1182,7 +1214,7 @@
             "type": "object",
             "properties": {
                 "author": {
-                    "type": "string"
+                    "$ref": "#/definitions/models.AuthorResp"
                 },
                 "created_at": {
                     "type": "string"
@@ -1201,6 +1233,17 @@
         "models.Category": {
             "type": "object",
             "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "parrentUUID": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CategoryResp": {
+            "type": "object",
+            "properties": {
                 "created_at": {
                     "type": "string"
                 },
@@ -1218,6 +1261,9 @@
                 }
             }
         },
+        "models.Empty": {
+            "type": "object"
+        },
         "models.Error": {
             "type": "object",
             "properties": {
@@ -1232,7 +1278,7 @@
                 "authors": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.Author"
+                        "$ref": "#/definitions/models.AuthorResp"
                     }
                 },
                 "count": {
@@ -1246,7 +1292,7 @@
                 "books": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.Book"
+                        "$ref": "#/definitions/models.BookResp"
                     }
                 },
                 "count": {
@@ -1260,7 +1306,7 @@
                 "categories": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.Category"
+                        "$ref": "#/definitions/models.CategoryResp"
                     }
                 },
                 "count": {
@@ -1277,7 +1323,7 @@
                 "orders": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/models.Order"
+                        "$ref": "#/definitions/models.OrderResp"
                     }
                 }
             }
@@ -1285,16 +1331,27 @@
         "models.Order": {
             "type": "object",
             "properties": {
-                "book_id": {
+                "bookId": {
                     "type": "string"
                 },
-                "created_at": {
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.OrderResp": {
+            "type": "object",
+            "properties": {
+                "bookId": {
+                    "type": "string"
+                },
+                "createdAt": {
                     "type": "string"
                 },
                 "description": {
                     "type": "string"
                 },
-                "updated_at": {
+                "updatedAt": {
                     "type": "string"
                 }
             }
@@ -1310,9 +1367,6 @@
         "models.UpdateAuthor": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 }
@@ -1324,9 +1378,6 @@
                 "author_id": {
                     "type": "string"
                 },
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 }
@@ -1335,9 +1386,6 @@
         "models.UpdateCategory": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "name": {
                     "type": "string"
                 },
@@ -1349,13 +1397,10 @@
         "models.UpdateOrder": {
             "type": "object",
             "properties": {
-                "book_id": {
+                "bookId": {
                     "type": "string"
                 },
                 "description": {
-                    "type": "string"
-                },
-                "id": {
                     "type": "string"
                 }
             }
