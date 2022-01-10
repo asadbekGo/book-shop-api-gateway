@@ -1,11 +1,11 @@
-package handlers
+package models
 
 type Category struct {
 	ID         string `json:"id"`
 	Name       string `json:"name"`
 	ParentUUID string `json:"parrentUUID"`
-	CreatedAt  string `json:"createdAt"`
-	UpdatedAt  string `json:"updatedAt"`
+	CreatedAt  string `json:"created_at"`
+	UpdatedAt  string `json:"updated_at"`
 }
 
 type UpdateCategory struct {
