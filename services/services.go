@@ -22,8 +22,12 @@ type serviceManager struct {
 	catalogService pbCatalog.CatalogServiceClient
 }
 
-func (s *serviceManager) Services() (pbOrder.OrderServiceClient, pbCatalog.CatalogServiceClient) {
-	return s.orderService, s.catalogService
+func (s *serviceManager) OrderService() pbOrder.OrderServiceClient {
+	return s.orderService
+}
+
+func (s *serviceManager) CatalogService() pbCatalog.CatalogServiceClient {
+	return s.catalogService
 }
 
 func NewServiceManager(conf *config.Config) (IServiceManager, error) {

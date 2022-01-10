@@ -1,17 +1,23 @@
-package handlers
+package models
 
 type Book struct {
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	AuthorId string `json:"author_id"`
+}
+
+type BookResp struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
-	AuthorId  string `json:"authorId"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
+	Author    string `json:"author"`
+	CreatedAt string `json:"created_at"`
+	UpdatedAt string `json:"updated_at"`
 }
 
 type UpdateBook struct {
 	ID       string `json:"id"`
 	Name     string `json:"name"`
-	AuthorId string `json:"authorId"`
+	AuthorId string `json:"author_id"`
 }
 
 type ListBooks struct {

@@ -33,6 +33,16 @@ func ParseQueryParams(queryParams map[string][]string) (*QueryParams, []string) 
 			continue
 		}
 
+		if key == "author" {
+			params.Filters[key] = value[0]
+			continue
+		}
+
+		if key == "category" {
+			params.Filters[key] = value[0]
+			continue
+		}
+
 		if key == "limit" {
 			params.Limit, err = strconv.ParseInt(value[0], 10, 64)
 			if err != nil {

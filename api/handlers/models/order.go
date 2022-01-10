@@ -1,16 +1,15 @@
-package handlers
+package models
 
 type Order struct {
-	ID          string `json:"id"`
-	BookId      string `json:"bookId"`
+	BookId      string `json:"book_id"`
 	Description string `json:"description"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
+	CreatedAt   string `json:"created_at"`
+	UpdatedAt   string `json:"updated_at"`
 }
 
 type UpdateOrder struct {
 	ID          string `json:"id"`
-	BookId      string `json:"bookId"`
+	BookId      string `json:"book_id"`
 	Description string `json:"description"`
 }
 

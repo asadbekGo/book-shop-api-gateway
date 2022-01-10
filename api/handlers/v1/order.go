@@ -2,6 +2,7 @@ package v1
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -14,6 +15,17 @@ import (
 	"github.com/asadbekGo/book-shop-api-gateway/pkg/utils"
 )
 
+// CreateOrder ...
+// @Summary CreateOrder
+// @Router /v1/order/ [post]
+// @Description This API for creating a new order
+// @Tags order
+// @Accept  json
+// @Produce  json
+// @Param Order request body models.Order true "orderCreateRequest"
+// @Success 200 {object} models.Order
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) CreateOrder(c *gin.Context) {
 	var (
 		body        pb.Order
@@ -32,6 +44,7 @@ func (h *handlerV1) CreateOrder(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
+	fmt.Println(body)
 	response, err := h.serviceManager.OrderService().CreateOrder(ctx, &body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -44,6 +57,17 @@ func (h *handlerV1) CreateOrder(c *gin.Context) {
 	c.JSON(http.StatusCreated, response)
 }
 
+// GetOrder ...
+// @Router /v1/orders/{id} [get]
+// @Summary GetOrder
+// @Description This API for getting order detail
+// @Tags order
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID"
+// @Success 200 {object} models.Order
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) GetOrder(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
@@ -67,6 +91,18 @@ func (h *handlerV1) GetOrder(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// ListOrders ...
+// @Router /v1/orders [get]
+// @Summary ListOrders
+// @Description This API for getting list of orders
+// @Tags order
+// @Accept  json
+// @Produce  json
+// @Param page query string false "Page"
+// @Param limit query string false "Limit"
+// @Success 200 {object} models.ListOrders
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) ListOrders(c *gin.Context) {
 	queryParams := c.Request.URL.Query()
 
@@ -101,6 +137,18 @@ func (h *handlerV1) ListOrders(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// UpdateOrder ...
+// @Router /v1/order/{id} [put]
+// @Summary UpdateOrder
+// @Description This API for updating order
+// @Tags order
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID"
+// @Param Order request body models.UpdateOrder true "orderUpdateRequest"
+// @Success 200
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) UpdateOrder(c *gin.Context) {
 	var (
 		body        pb.Order
@@ -133,6 +181,17 @@ func (h *handlerV1) UpdateOrder(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// DeleteOrder ...
+// @Router /v1/order/{id} [delete]
+// @Summary DeleteOrder
+// @Description This API for deleting order
+// @Tags order
+// @Accept  json
+// @Produce  json
+// @Param id path string true "ID"
+// @Success 200
+// @Failure 400 {object} models.StandardErrorModel
+// @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) DeleteOrder(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
@@ -149,7 +208,7 @@ func (h *handlerV1) DeleteOrder(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
-		h.log.Error("failed to delete user", l.Error(err))
+		h.log.Error("failed to delete order", l.Error(err))
 		return
 	}
 
