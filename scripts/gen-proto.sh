@@ -2,6 +2,9 @@
 
 CURRENT_DIR=$(pwd)
 
+mkdir $CURRENT_DIR/genproto/catalog_service
+mkdir $CURRENT_DIR/genproto/order_service
+
 protoc -I /usr/local/include \
        -I $GOPATH/src/github.com/gogo/protobuf/gogoproto \
        -I $CURRENT_DIR/protos/catalog_service/ \
@@ -12,16 +15,10 @@ protoc -I /usr/local/include \
        -I $GOPATH/src/github.com/gogo/protobuf/gogoproto \
        -I $CURRENT_DIR/protos/order_service/ \
         --gofast_out=plugins=grpc:$CURRENT_DIR/genproto/order_service/ \
-        $CURRENT_DIR/protos/order_service/*.proto;        
+        $CURRENT_DIR/protos/order_service/*.proto;
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    sed -i "" -e "s/,omitempty//g" $CURRENT_DIR/genproto/catalog_service/*.go
+    sed -i "" -e "s/,omitempty//g" $CURRENT_DIR/genproto/*.go
   else
-    sed -i -e "s/,omitempty//g" $CURRENT_DIR/genproto/catalog_service/*.go
-fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    sed -i "" -e "s/,omitempty//g" $CURRENT_DIR/genproto/order_service/*.go
-  else
-    sed -i -e "s/,omitempty//g" $CURRENT_DIR/genproto/order_service/*.go
+    sed -i -e "s/,omitempty//g" $CURRENT_DIR/genproto/*.go
 fi
