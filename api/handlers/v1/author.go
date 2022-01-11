@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"google.golang.org/protobuf/encoding/protojson"
 
-	_ "github.com/asadbekGo/book-shop-api-gateway/api/docs" //swag
+	_ "github.com/asadbekGo/book-shop-api-gateway/api/docs" // swag nolint:errcheck
 	pb "github.com/asadbekGo/book-shop-api-gateway/genproto/catalog_service"
 	l "github.com/asadbekGo/book-shop-api-gateway/pkg/logger"
 	"github.com/asadbekGo/book-shop-api-gateway/pkg/utils"

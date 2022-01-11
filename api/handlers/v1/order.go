@@ -28,7 +28,7 @@ import (
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) CreateOrder(c *gin.Context) {
 	var (
-		body        pb.Order
+		body        pb.OrderReq
 		jspbMarshal protojson.MarshalOptions
 	)
 	jspbMarshal.UseProtoNames = true
@@ -151,7 +151,7 @@ func (h *handlerV1) ListOrders(c *gin.Context) {
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) UpdateOrder(c *gin.Context) {
 	var (
-		body        pb.Order
+		body        pb.OrderReq
 		jspbMarshal protojson.MarshalOptions
 	)
 	jspbMarshal.UseProtoNames = true

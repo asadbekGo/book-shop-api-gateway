@@ -6,16 +6,17 @@ type Book struct {
 }
 
 type BookResp struct {
-	ID        string     `json:"id"`
-	Name      string     `json:"name"`
-	Author    AuthorResp `json:"author"`
-	CreatedAt string     `json:"created_at"`
-	UpdatedAt string     `json:"updated_at"`
+	ID         string         `json:"id"`
+	Name       string         `json:"name"`
+	Author     AuthorResp     `json:"author"`
+	Categories []CategoryResp `json:"categories"`
+	CreatedAt  string         `json:"createdAt"`
+	UpdatedAt  string         `json:"updatedAt"`
 }
 
 type UpdateBook struct {
 	Name     string `json:"name"`
-	AuthorId string `json:"author_id"`
+	AuthorId string `json:"authorId"`
 }
 
 type ListBooks struct {

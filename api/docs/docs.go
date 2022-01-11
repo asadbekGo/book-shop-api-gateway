@@ -398,55 +398,6 @@ var doc = `{
                 }
             }
         },
-        "/v1/bookCategories": {
-            "get": {
-                "description": "This API for getting list of bookCategories",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "bookCategory"
-                ],
-                "summary": "GetBookCategories",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Page",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "Limit",
-                        "name": "limit",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.BookCategoryList"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    }
-                }
-            }
-        },
         "/v1/bookCategory/": {
             "post": {
                 "description": "This API for creating a new bookCategory",
@@ -475,7 +426,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.BookCategoryResp"
+                            "$ref": "#/definitions/models.BookResp"
                         }
                     },
                     "400": {
@@ -494,48 +445,6 @@ var doc = `{
             }
         },
         "/v1/bookCategory/{id}": {
-            "get": {
-                "description": "This API for getting bookCategory detail",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "bookCategory"
-                ],
-                "summary": "GetBookCategories",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.BookCategoryResp"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandardErrorModel"
-                        }
-                    }
-                }
-            },
             "delete": {
                 "description": "This API for deleting bookCategory",
                 "consumes": [
@@ -555,6 +464,15 @@ var doc = `{
                         "name": "id",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "description": "bookCategoryCreateRequest",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.BookCategoryDelete"
+                        }
                     }
                 ],
                 "responses": {
@@ -1193,39 +1111,19 @@ var doc = `{
         "models.BookCategory": {
             "type": "object",
             "properties": {
-                "book_id": {
+                "bookId": {
                     "type": "string"
                 },
-                "category_id": {
+                "categoryId": {
                     "type": "string"
                 }
             }
         },
-        "models.BookCategoryList": {
+        "models.BookCategoryDelete": {
             "type": "object",
             "properties": {
-                "book_categories": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.BookCategoryResp"
-                    }
-                },
-                "count": {
-                    "type": "integer"
-                }
-            }
-        },
-        "models.BookCategoryResp": {
-            "type": "object",
-            "properties": {
-                "book_resp": {
-                    "$ref": "#/definitions/models.BookResp"
-                },
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/models.Category"
-                    }
+                "categoryId": {
+                    "type": "string"
                 }
             }
         },
@@ -1235,7 +1133,13 @@ var doc = `{
                 "author": {
                     "$ref": "#/definitions/models.AuthorResp"
                 },
-                "created_at": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.CategoryResp"
+                    }
+                },
+                "createdAt": {
                     "type": "string"
                 },
                 "id": {
@@ -1244,7 +1148,7 @@ var doc = `{
                 "name": {
                     "type": "string"
                 },
-                "updated_at": {
+                "updatedAt": {
                     "type": "string"
                 }
             }
@@ -1394,7 +1298,7 @@ var doc = `{
         "models.UpdateBook": {
             "type": "object",
             "properties": {
-                "author_id": {
+                "authorId": {
                     "type": "string"
                 },
                 "name": {
