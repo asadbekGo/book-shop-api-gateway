@@ -40,6 +40,7 @@ func (h *handlerV1) CreateBook(c *gin.Context) {
 		h.log.Error("failed to bind json", l.Error(err))
 		return
 	}
+
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 

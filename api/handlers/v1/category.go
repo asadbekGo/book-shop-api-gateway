@@ -2,7 +2,6 @@ package v1
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -104,7 +103,6 @@ func (h *handlerV1) GetCategory(c *gin.Context) {
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) GetCategories(c *gin.Context) {
 	queryParams := c.Request.URL.Query()
-	fmt.Println("Categories Ok")
 
 	params, errStr := utils.ParseQueryParams(queryParams)
 	if errStr != nil {

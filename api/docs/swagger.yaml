@@ -19,19 +19,11 @@ definitions:
     properties:
       authorId:
         type: string
+      categories:
+        items:
+          type: string
+        type: array
       name:
-        type: string
-    type: object
-  models.BookCategory:
-    properties:
-      bookId:
-        type: string
-      categoryId:
-        type: string
-    type: object
-  models.BookCategoryDelete:
-    properties:
-      categoryId:
         type: string
     type: object
   models.BookResp:
@@ -55,7 +47,7 @@ definitions:
     properties:
       name:
         type: string
-      parrentUUID:
+      parentUUID:
         type: string
     type: object
   models.CategoryResp:
@@ -66,7 +58,7 @@ definitions:
         type: string
       name:
         type: string
-      parrentUUID:
+      parentUUID:
         type: string
       updated_at:
         type: string
@@ -146,6 +138,10 @@ definitions:
     properties:
       authorId:
         type: string
+      categories:
+        items:
+          type: string
+        type: array
       name:
         type: string
     type: object
@@ -153,7 +149,7 @@ definitions:
     properties:
       name:
         type: string
-      parrentUUID:
+      parentUUID:
         type: string
     type: object
   models.UpdateOrder:
@@ -413,71 +409,6 @@ paths:
       summary: UpdateBook
       tags:
       - book
-  /v1/bookCategory/:
-    post:
-      consumes:
-      - application/json
-      description: This API for creating a new bookCategory
-      parameters:
-      - description: bookCategoryCreateRequest
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/models.BookCategory'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.BookResp'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/models.StandardErrorModel'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models.StandardErrorModel'
-      summary: CreateBookCategory
-      tags:
-      - bookCategory
-  /v1/bookCategory/{id}:
-    delete:
-      consumes:
-      - application/json
-      description: This API for deleting bookCategory
-      parameters:
-      - description: ID
-        in: path
-        name: id
-        required: true
-        type: string
-      - description: bookCategoryCreateRequest
-        in: body
-        name: request
-        required: true
-        schema:
-          $ref: '#/definitions/models.BookCategoryDelete'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.Empty'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/models.StandardErrorModel'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models.StandardErrorModel'
-      summary: DeleteBookCategory
-      tags:
-      - bookCategory
   /v1/books:
     get:
       consumes:
