@@ -2,7 +2,6 @@ package v1
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -44,7 +43,6 @@ func (h *handlerV1) CreateOrder(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.cfg.CtxTimeout))
 	defer cancel()
 
-	fmt.Println(body)
 	response, err := h.serviceManager.OrderService().CreateOrder(ctx, &body)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

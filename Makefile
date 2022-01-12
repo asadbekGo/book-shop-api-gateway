@@ -13,3 +13,6 @@ lint: ## Run golangci-lint with printing to stdout
 
 swag-gen:
 	swag init -g api/router.go -o api/docs
+
+pull-submodule:
+	 git submodule update --init --recursive --remote
