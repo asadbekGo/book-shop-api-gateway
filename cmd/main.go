@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/asadbekGo/book-shop-api-gateway/api"
 	"github.com/asadbekGo/book-shop-api-gateway/config"
 	"github.com/asadbekGo/book-shop-api-gateway/pkg/logger"
@@ -21,6 +23,8 @@ func main() {
 		Logger:         log,
 		ServiceManager: serviceManager,
 	})
+
+	fmt.Println("Listening...")
 
 	if err := server.Run(cfg.HTTPPort); err != nil {
 		log.Fatal("failed to run http server", logger.Error(err))

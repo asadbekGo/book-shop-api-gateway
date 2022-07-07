@@ -102,6 +102,7 @@ func (h *handlerV1) GetAuthor(c *gin.Context) {
 // @Failure 400 {object} models.StandardErrorModel
 // @Failure 500 {object} models.StandardErrorModel
 func (h *handlerV1) GetAuthors(c *gin.Context) {
+
 	queryParams := c.Request.URL.Query()
 
 	params, errStr := utils.ParseQueryParams(queryParams)
