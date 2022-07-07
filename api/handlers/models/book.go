@@ -1,9 +1,8 @@
 package models
 
 type Book struct {
-	Name     string   `json:"name"`
-	AuthorId string   `json:"authorId"`
-	Category []string `json:"categories"`
+	Name     string `json:"name"`
+	AuthorId string `json:"authorId"`
 }
 
 type BookResp struct {
@@ -16,9 +15,8 @@ type BookResp struct {
 }
 
 type UpdateBook struct {
-	Name     string   `json:"name"`
-	AuthorId string   `json:"authorId"`
-	Category []string `json:"categories"`
+	Name     string `json:"name"`
+	AuthorId string `json:"authorId"`
 }
 
 type ListBooks struct {

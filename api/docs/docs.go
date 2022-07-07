@@ -398,6 +398,105 @@ var doc = `{
                 }
             }
         },
+        "/v1/bookCategory/": {
+            "post": {
+                "description": "This API for creating a new bookCategory",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bookCategory"
+                ],
+                "summary": "CreateBookCategory",
+                "parameters": [
+                    {
+                        "description": "bookCategoryCreateRequest",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.BookCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.BookResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/bookCategory/{id}": {
+            "delete": {
+                "description": "This API for deleting bookCategory",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bookCategory"
+                ],
+                "summary": "DeleteBookCategory",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "bookCategoryCreateRequest",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.BookCategoryDelete"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Empty"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandardErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandardErrorModel"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/books": {
             "get": {
                 "description": "This API for getting list of books",
@@ -1004,13 +1103,26 @@ var doc = `{
                 "authorId": {
                     "type": "string"
                 },
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
                 "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BookCategory": {
+            "type": "object",
+            "properties": {
+                "bookId": {
+                    "type": "string"
+                },
+                "categoryId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BookCategoryDelete": {
+            "type": "object",
+            "properties": {
+                "categoryId": {
                     "type": "string"
                 }
             }
@@ -1047,7 +1159,7 @@ var doc = `{
                 "name": {
                     "type": "string"
                 },
-                "parentUUID": {
+                "parrentUUID": {
                     "type": "string"
                 }
             }
@@ -1064,7 +1176,7 @@ var doc = `{
                 "name": {
                     "type": "string"
                 },
-                "parentUUID": {
+                "parrentUUID": {
                     "type": "string"
                 },
                 "updated_at": {
@@ -1189,12 +1301,6 @@ var doc = `{
                 "authorId": {
                     "type": "string"
                 },
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
                 "name": {
                     "type": "string"
                 }
@@ -1206,7 +1312,7 @@ var doc = `{
                 "name": {
                     "type": "string"
                 },
-                "parentUUID": {
+                "parrentUUID": {
                     "type": "string"
                 }
             }

@@ -2,6 +2,7 @@ package v1
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -104,6 +105,8 @@ func (h *handlerV1) GetAuthor(c *gin.Context) {
 func (h *handlerV1) GetAuthors(c *gin.Context) {
 
 	queryParams := c.Request.URL.Query()
+
+	fmt.Println("OK")
 
 	params, errStr := utils.ParseQueryParams(queryParams)
 	if errStr != nil {
